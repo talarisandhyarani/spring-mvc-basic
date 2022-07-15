@@ -1,7 +1,9 @@
 package com.cgi.springmvc.services;
 
+import com.cgi.springmvc.beans.Employee;
 import com.cgi.springmvc.beans.Project;
 import com.cgi.springmvc.beans.ProjectDTO;
+import com.cgi.springmvc.repository.EmployeeRepository;
 import com.cgi.springmvc.repository.ProjectRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,11 @@ public class ProjectService {
 
     private ProjectRepository projectRepository;
     private ModelMapper modelMapper;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
-    public ProjectService(ProjectRepository projectRepository, ModelMapper modelMapper){
+    public ProjectService(EmployeeRepository employeeRepository, ProjectRepository projectRepository, ModelMapper modelMapper){
+        this.employeeRepository = employeeRepository;
         this.projectRepository = projectRepository;
         this.modelMapper = modelMapper;
     }
@@ -53,7 +57,20 @@ public class ProjectService {
         projectRepository.save(projectEntity);
 
         return true;
-
     }
+
+    public boolean addEmployeeToProject(long proj_id, long employ_id){
+        Project project = projectRepository.findById(proj_id).orElse(null);
+        Employee employee = employeeRepository.findById(employ_id).orElse(null);
+        project.addEmployee(employee);
+        projectRepository.save(project);
+
+        if (employee == null || project == null){
+            return false;
+        }
+
+        return true;
+    }
+
 
 }
