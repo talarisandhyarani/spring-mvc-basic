@@ -1,5 +1,6 @@
 package com.cgi.springmvc.web;
 
+
 import com.cgi.springmvc.beans.Customer;
 import com.cgi.springmvc.beans.CustomerDTO;
 import com.cgi.springmvc.repository.CustomerRepository;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 
 @org.springframework.stereotype.Controller
 public class WebController {
@@ -64,4 +67,10 @@ public class WebController {
         model.addAttribute("id", customer.getId());
         return "welcome";
     }
+
+    @GetMapping("/register")
+    public String showRegisterForm() {
+        return "registerForm";
+    }
+
 }
