@@ -31,7 +31,7 @@ public class WebController {
     public String showForm() {
         return "sample";
     }
-    
+
     @GetMapping("/sample2")
     public String showForm2() {
         return "sample2";
@@ -42,29 +42,27 @@ public class WebController {
         return "sampleError";
     }
 
-    @GetMapping("/newCustomer")
-    public String showForm4() {return "newCustomer"; }
+
     @PostMapping("/save")
-    public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("customer") EmployeeDTO customer){
+    public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("employee") EmployeeDTO employee){
 
-        System.out.println("customer name " + customer.getFirstName());
+        System.out.println("employee name " + employee.getFirstName());
 
-        Employee employeeEntity = modelMapper.map(customer, Employee.class);
-        employeeEntity = employeeRep.save(employeeEntity);
+        Employee employeeEntity = modelMapper.map(employee, Employee.class);
 
-        customer.setId(employeeEntity.getCustomer_id());
-        redirectAttr.addFlashAttribute("customer",
-                customer);
+        employee.setId(employeeEntity.getId());
+        redirectAttr.addFlashAttribute("employee",
+                employee);
 
         return "redirect:welcome";
     }
 
     @GetMapping("/welcome")
-    public String showWelcome(@ModelAttribute("customer") EmployeeDTO customer, Model model){
-        System.out.println("phone " + customer.getPhoneNumber());
-        model.addAttribute("name", customer.getFirstName()+" "+customer.getLastName());
-        model.addAttribute("address", customer.getAddress() + " " + customer.getPhoneNumber());
-        model.addAttribute("id", customer.getId());
+    public String showWelcome(@ModelAttribute("employee") EmployeeDTO employee, Model model){
+        System.out.println("phone " + employee.getPhoneNumber());
+        model.addAttribute("name", employee.getFirstName()+" "+employee.getLastName());
+        model.addAttribute("address", employee.getAddress() + " " + employee.getPhoneNumber());
+        model.addAttribute("id", employee.getId());
         return "welcome";
     }
 
