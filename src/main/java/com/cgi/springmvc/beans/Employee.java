@@ -9,6 +9,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -36,4 +37,13 @@ public class Employee {
     @Nullable
     @Column(name = "phoneNumber")
     private String phoneNumber;
+
+    @Nullable
+    @Column(name="birthDay")
+    private Date birthDay;
+
+    @Nullable
+    @Column(name="hireDate")
+    private Date hireDate;
+
 }

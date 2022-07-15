@@ -5,7 +5,7 @@
 <head></head>
 <body bgcolor="<spring:theme code='background'/>">
 <h1> New Employee</h2>
-<form form: method = "post" name="save" action="save">
+<form form: method = "post" name="save" action="/newEmployee">
 <table>
 
     <tr> First Name: <input type="text" name="firstName"/> </tr>
