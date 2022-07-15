@@ -14,12 +14,12 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="Customer")
+@Table(name="Employee")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Employee {
     @Id
-    @Column(name = "customer_id")
+    @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long customer_id;
 

@@ -1,9 +1,9 @@
 package com.cgi.springmvc.web;
 
 
-import com.cgi.springmvc.beans.Customer;
-import com.cgi.springmvc.beans.CustomerDTO;
-import com.cgi.springmvc.repository.CustomerRepository;
+import com.cgi.springmvc.beans.Employee;
+import com.cgi.springmvc.beans.EmployeeDTO;
+import com.cgi.springmvc.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class WebController {
 
       @Autowired
-   private CustomerRepository customerRep;
+   private EmployeeRepository employeeRep;
       @Autowired
    private ModelMapper modelMapper;
    /* @Autowired
@@ -45,14 +45,14 @@ public class WebController {
     @GetMapping("/newCustomer")
     public String showForm4() {return "newCustomer"; }
     @PostMapping("/save")
-    public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("customer") CustomerDTO customer){
+    public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("customer") EmployeeDTO customer){
 
         System.out.println("customer name " + customer.getFirstName());
 
-        Customer customerEntity = modelMapper.map(customer, Customer.class);
-        customerEntity = customerRep.save(customerEntity);
+        Employee employeeEntity = modelMapper.map(customer, Employee.class);
+        employeeEntity = employeeRep.save(employeeEntity);
 
-        customer.setId(customerEntity.getCustomer_id());
+        customer.setId(employeeEntity.getCustomer_id());
         redirectAttr.addFlashAttribute("customer",
                 customer);
 
@@ -60,7 +60,7 @@ public class WebController {
     }
 
     @GetMapping("/welcome")
-    public String showWelcome(@ModelAttribute("customer") CustomerDTO customer, Model model){
+    public String showWelcome(@ModelAttribute("customer") EmployeeDTO customer, Model model){
         System.out.println("phone " + customer.getPhoneNumber());
         model.addAttribute("name", customer.getFirstName()+" "+customer.getLastName());
         model.addAttribute("address", customer.getAddress() + " " + customer.getPhoneNumber());
