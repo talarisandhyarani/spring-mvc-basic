@@ -34,6 +34,7 @@ public class EmployeeService {
         return employeeDTO;
     }
 
+    
     public EmployeeDTO getEmployeeByName(String firstName, String lastName){
         Optional<Employee> employee = employeeRepository.getEmployeeByName(firstName, lastName);
         EmployeeDTO  employeeDTO = new EmployeeDTO();
@@ -54,8 +55,8 @@ public class EmployeeService {
         return employeeDTO;
     }
 
-    public void saveEmployee(EmployeeDTO employee){
+        public Employee saveEmployee(EmployeeDTO employee){
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
-        employeeRepository.save(employeeEntity);
+        return employeeRepository.save(employeeEntity);
     }
 }

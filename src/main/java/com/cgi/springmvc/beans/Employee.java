@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -21,7 +23,7 @@ public class Employee {
     @Id
     @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long employee_id;
+    private long id;
 
     @Column(name = "firstName")
     private String firstName;
@@ -34,6 +36,21 @@ public class Employee {
     private String address;
 
     @Nullable
+    @Column(name = "email")
+    private String email;
+
+    @Nullable
     @Column(name = "phoneNumber")
     private String phoneNumber;
+
+    @Nullable
+    //@DateTimeFormat(pattern = "MM/dd/yyyy")
+    @Column(name="birthDay")
+    private Date birthDay;
+
+    @Nullable
+    //@DateTimeFormat(pattern = "MM/dd/yyyy")
+    @Column(name="hireDate")
+    private Date hireDate;
+
 }
