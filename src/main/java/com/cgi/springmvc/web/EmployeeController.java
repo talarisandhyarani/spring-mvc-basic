@@ -69,7 +69,10 @@ public class EmployeeController {
     public String searchReturn(@RequestParam String searchType, @RequestParam String query, Model model){
         EmployeeDTO employee = new EmployeeDTO();
         if (searchType.equals("name")){
-            String[] nameArr = query.split(" ", 2);
+            System.out.println("query " + query);
+            String[] nameArr = query.split("\\s", 2);
+            System.out.println("nameArr[0] " + nameArr[0]);
+            System.out.println("nameArr[1] " + nameArr[1]);
             employee = employeeService.getEmployeeByName(nameArr[0], nameArr[1]);
         }else if (searchType.equals("email")){
             employee = employeeService.getEmployeeByEmail(query);
