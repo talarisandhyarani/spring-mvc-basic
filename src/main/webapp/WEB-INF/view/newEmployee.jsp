@@ -17,9 +17,9 @@
     <br>
     <tr> Phone Number: <input type = "text" name="phoneNumber"/> </tr>
     <br>
-    <tr> Date of Birth: <input type = "date" name="birthDay"/> </tr>
+    <tr> Date of Birth: <input type="text" name="birthDate"/> </tr>
     <br>
-     <tr> Hire Date: <input type = "date" name="hireDate"/> </tr>
+     <tr> Hire Date: <input type="text" name="hireDate"/> </tr>
 </table>
 <input type="submit" value="save"/>
  </form:form>
