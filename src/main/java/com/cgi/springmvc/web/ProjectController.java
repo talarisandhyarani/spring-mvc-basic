@@ -6,6 +6,7 @@ import com.cgi.springmvc.repository.ProjectRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,30 @@ public class ProjectController {
         Project projectEntity = modelMapper.map(project, Project.class);
 
         redirectAttr.addFlashAttribute("project", project);
+
+        return "redirect:projectDetails";
+    }
+
+    @GetMapping("/projectDetails")
+    public String projectDetails() {
+        return "projectDetails";
+    }
+
+    @DeleteMapping("/projectDetails")
+    public String projectDelete(RedirectAttributes redirectAttr) {
+        //insert logic here
+
+        return "redirect:welcome";
+    }
+
+    @GetMapping("/editProjectEmployees")
+    public String editProjectEmployees() {
+        return "editProjectEmployees";
+    }
+
+    @PostMapping("/editProjectEmployees")
+    public String submittedEditProjectEmployees(RedirectAttributes redirectAttr) {
+        //Insert logic here
 
         return "redirect:projectDetails";
     }
