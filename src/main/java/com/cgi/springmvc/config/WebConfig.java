@@ -36,10 +36,10 @@ public class WebConfig implements WebMvcConfigurer {
         return beanNameViewResolver;
     }
 
-    @Bean
-    public View sample() {
-        return new JstlView("/WEB-INF/view/sample.jsp");
-    }
+//    @Bean
+//    public View sample() {
+//        return new JstlView("/WEB-INF/view/sample.jsp");
+//    }
 
 
 }
