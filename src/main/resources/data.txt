@@ -1,4 +1,4 @@
-INSERT INTO EMPLOYEE(address,birth_day,email,first_name,hire_date,last_name,phone_number) VALUES
+INSERT INTO EMPLOYEE(address,birth_date,email,first_name,hire_date,last_name,phone_number) VALUES
 ('140 road', '1999-06-20 00:00:00', 'email@email.com','mario','1999-06-20 00:00:00','perri','7241119999');
 
 INSERT INTO PROJECT(end_date, project_name,start_date)

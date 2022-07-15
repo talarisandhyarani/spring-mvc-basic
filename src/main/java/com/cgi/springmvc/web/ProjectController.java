@@ -7,9 +7,11 @@ import com.cgi.springmvc.repository.ProjectRepository;
 import com.cgi.springmvc.services.ProjectService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @org.springframework.stereotype.Controller
 public class ProjectController {
@@ -60,10 +62,21 @@ public class ProjectController {
         return "redirect:projectDetails";
     }
 
+    @GetMapping("/getEmployeeProjectForm")
+    public String getEmployeeProjectForm(){
+        return "addEmployeeToProjectForm";
+    }
+
+    @PostMapping("/addEmployeeToProject")
+    public String addEmployeeProject(@RequestParam("projectId") Long proj_id, @RequestParam("employId") Long employ_id){
+        projectService.addEmployeeToProject(proj_id, employ_id);
+        return "redirect:";
+    }
 
     //for testing projectService only changed to private now
-    @PostMapping("/addToProject/{cid}/{pid}")
-    private boolean addToProject(@PathVariable("cid") long cid, @PathVariable("pid") long pid){
+    @PostMapping("/addToProjectAPI/")
+    private boolean addToProjectAPI(@Param("cid") long cid, @Param("pid") long pid){
+
         projectService.addEmployeeToProject(pid, cid);
         return true;
     }
