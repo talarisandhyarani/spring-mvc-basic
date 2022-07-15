@@ -19,8 +19,8 @@ public class EmployeeDTO {
     private String email;
     private String address;
     private String phoneNumber;
-    //@DateTimeFormat(pattern = "MM/dd/yyyy")
-    //private Date birthDay;
-    //@DateTimeFormat(pattern = "MM/dd/yyyy")
-    //private Date hireDate;
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    private Date birthDate;
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    private Date hireDate;
 }
