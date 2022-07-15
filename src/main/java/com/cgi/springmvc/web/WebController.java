@@ -1,9 +1,9 @@
 package com.cgi.springmvc.web;
 
 
-import com.cgi.springmvc.beans.Customer;
-import com.cgi.springmvc.beans.CustomerDTO;
-import com.cgi.springmvc.repository.CustomerRepository;
+import com.cgi.springmvc.beans.Employee;
+import com.cgi.springmvc.beans.EmployeeDTO;
+import com.cgi.springmvc.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class WebController {
 
       @Autowired
-   private CustomerRepository customerRep;
+   private EmployeeRepository employeeRep;
       @Autowired
    private ModelMapper modelMapper;
    /* @Autowired
@@ -42,29 +42,29 @@ public class WebController {
         return "sampleError";
     }
 
-    @GetMapping("/newCustomer")
-    public String showForm4() {return "newCustomer"; }
+    @GetMapping("/newEmployee")
+    public String showForm4() {return "newEmployee"; }
     @PostMapping("/save")
-    public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("customer") CustomerDTO customer){
+    public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("employee") EmployeeDTO employee){
 
-        System.out.println("customer name " + customer.getFirstName());
+        System.out.println("employee name " + employee.getFirstName());
 
-        Customer customerEntity = modelMapper.map(customer, Customer.class);
-        customerEntity = customerRep.save(customerEntity);
+        Employee employeeEntity = modelMapper.map(employee, Employee.class);
+        employeeEntity = employeeRep.save(employeeEntity);
 
-        customer.setId(customerEntity.getCustomer_id());
-        redirectAttr.addFlashAttribute("customer",
-                customer);
+        employee.setId(employeeEntity.getEmployee_id());
+        redirectAttr.addFlashAttribute("employee",
+                employee);
 
         return "redirect:welcome";
     }
 
     @GetMapping("/welcome")
-    public String showWelcome(@ModelAttribute("customer") CustomerDTO customer, Model model){
-        System.out.println("phone " + customer.getPhoneNumber());
-        model.addAttribute("name", customer.getFirstName()+" "+customer.getLastName());
-        model.addAttribute("address", customer.getAddress() + " " + customer.getPhoneNumber());
-        model.addAttribute("id", customer.getId());
+    public String showWelcome(@ModelAttribute("employee") EmployeeDTO employee, Model model){
+        System.out.println("phone " + employee.getPhoneNumber());
+        model.addAttribute("name", employee.getFirstName()+" "+employee.getLastName());
+        model.addAttribute("address", employee.getAddress() + " " + employee.getPhoneNumber());
+        model.addAttribute("id", employee.getId());
         return "welcome";
     }
 
