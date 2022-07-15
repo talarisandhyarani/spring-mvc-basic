@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -43,10 +44,12 @@ public class Employee {
     private String phoneNumber;
 
     @Nullable
+    //@DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name="birthDay")
     private Date birthDay;
 
     @Nullable
+    //@DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name="hireDate")
     private Date hireDate;
 

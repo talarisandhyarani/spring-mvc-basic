@@ -24,7 +24,10 @@ public class EmployeeController {
     private ModelMapper modelMapper;
 
     @GetMapping("/newEmployee")
-    public String newEmployee(){return "newEmployee";}
+    public String newEmployee(Model model){
+        //Employee empoyee
+        return "newEmployee";
+    }
 
     @PostMapping(value = "/newEmployee")
     public String saveEmployee(RedirectAttributes redirectAttributes, @ModelAttribute("employee") EmployeeDTO employee){
