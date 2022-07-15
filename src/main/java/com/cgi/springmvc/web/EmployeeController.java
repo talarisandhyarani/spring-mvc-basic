@@ -71,6 +71,8 @@ public class EmployeeController {
         if (searchType.equals("name")){
             String[] nameArr = query.split(" ", 2);
             employee = employeeService.getEmployeeByName(nameArr[0], nameArr[1]);
+        }else if (searchType.equals("email")){
+            employee = employeeService.getEmployeeByEmail(query);
         }
         else if (searchType.equals("address")){
             employee = employeeService.getEmployeeByAddress(query);
