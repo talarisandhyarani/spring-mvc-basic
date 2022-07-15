@@ -10,6 +10,8 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
+
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -42,6 +44,10 @@ public class Employee {
     @Nullable
     @Column(name = "phoneNumber")
     private String phoneNumber;
+
+    @ManyToMany
+    @JoinTable(name = "employees_projects", joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "employee_id"), inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "project_id"))
+    private Collection<Project> Projects;
 
     @Nullable
     @Column(name="birthDate")
