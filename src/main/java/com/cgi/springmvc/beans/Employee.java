@@ -35,6 +35,10 @@ public class Employee {
     private String address;
 
     @Nullable
+    @Column(name = "email")
+    private String email;
+
+    @Nullable
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
