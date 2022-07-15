@@ -58,8 +58,10 @@ public class ProjectController {
         return "redirect:projectDetails";
     }
 
+
+    //for testing projectService only changed to private now
     @PostMapping("/addToProject/{cid}/{pid}")
-    public boolean addToProject(@PathVariable("cid") long cid, @PathVariable("pid") long pid){
+    private boolean addToProject(@PathVariable("cid") long cid, @PathVariable("pid") long pid){
         projectService.addEmployeeToProject(pid, cid);
         return true;
     }
