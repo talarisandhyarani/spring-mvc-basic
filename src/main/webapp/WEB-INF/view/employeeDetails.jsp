@@ -8,12 +8,12 @@
 <body>
 	<h1>${employee.firstName} ${employee.lastName}</h1>
 	<ul>
-	    <li>Employee ID: ${employee.employee_id}</li>
+	    <li>Employee ID: ${employee.id}</li>
 	    <li>Email: ${employee.email}</li>
 	    <li>Phone Number: ${employee.phoneNumber}</li>
-	    <li>Date of Birth: ${employee.birthDay}</li>
+	    <%--<li>Date of Birth: ${employee.birthDay}</li>
 	    <li>Hire Date: ${employee.hireDate}</li>
-	   <%-- <li>Current Projects: ${projectList}</li> --%>
+	    <li>Current Projects: ${projectList}</li> --%>
 	</ul>
 </body>
 </html>

@@ -42,8 +42,7 @@ public class WebController {
         return "sampleError";
     }
 
-    @GetMapping("/newEmployee")
-    public String showForm4() {return "newEmployee"; }
+
     @PostMapping("/save")
     public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("employee") EmployeeDTO employee){
 
@@ -52,7 +51,7 @@ public class WebController {
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
         employeeEntity = employeeRep.save(employeeEntity);
 
-        employee.setId(employeeEntity.getEmployee_id());
+        employee.setId(employeeEntity.getId());
         redirectAttr.addFlashAttribute("employee",
                 employee);
 

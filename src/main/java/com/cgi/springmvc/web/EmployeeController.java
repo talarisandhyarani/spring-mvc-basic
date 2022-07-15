@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,18 +44,18 @@ public class EmployeeController {
         return "employeeDetails";
     }
 
-//    @GetMapping("/employee/{id}")
-//    public String getEmployee(@PathVariable("id") Long employeeId, Model model){
-//        Employee employee = employeeService.getEmployee(employeeId);
-//
-//        model.addAttribute("employee", employee);
-//        return "employee";
-//    }
-//
-//    @GetMapping("/employeeList")
-//    public String getEmployees( Model model) {
-//        List<Employee> employeeList = employeeService.getAllEmployee();
-//        model.addAttribute("employees", employeeList);
-//        return "employeeList";
-//    }
+    @GetMapping("/employee/{id}")
+    public String getEmployee(@PathVariable("id") Long employeeId, Model model){
+        EmployeeDTO employee = employeeService.getEmployeeById(employeeId);
+
+        model.addAttribute("employee", employee);
+        return "employeeDetails";
+    }
+
+    @GetMapping("/employeeList")
+    public String getEmployees( Model model) {
+        List<EmployeeDTO> employeeList = employeeService.getAllEmployees();
+        model.addAttribute("employees", employeeList);
+        return "employeeList";
+    }
 }
