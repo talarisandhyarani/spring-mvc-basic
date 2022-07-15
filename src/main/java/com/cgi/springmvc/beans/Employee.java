@@ -50,12 +50,10 @@ public class Employee {
     private Collection<Project> Projects;
 
     @Nullable
-    //@DateTimeFormat(pattern = "MM/dd/yyyy")
-    @Column(name="birthDay")
-    private Date birthDay;
+    @Column(name="birthDate")
+    private Date birthDate;
 
     @Nullable
-    //@DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name="hireDate")
     private Date hireDate;
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Date;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -24,8 +25,7 @@ public class EmployeeController {
     private ModelMapper modelMapper;
 
     @GetMapping("/newEmployee")
-    public String newEmployee(Model model){
-        //Employee empoyee
+    public String newEmployee(){
         return "newEmployee";
     }
 
