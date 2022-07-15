@@ -10,30 +10,26 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 
 import java.util.Set;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-@Table(name="Customer")
+@Table(name="Project")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Project {
     @Id
-    @Column(name = "customer_id")
+    @Column(name = "project_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long customer_id;
+    private long project_id;
 
-    @Column(name = "firstName")
-    private String firstName;
+    @Column(name = "project_name")
+    private String project_name;
 
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "start_date")
+    private Date start_date;
 
-    @Nullable
-    @Column(name = "address")
-    private String address;
-
-    @Nullable
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
+    @Column(name = "end_date")
+    private Date end_date;
 }
