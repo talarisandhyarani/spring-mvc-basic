@@ -13,6 +13,7 @@ import javax.persistence.*;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -47,7 +48,7 @@ public class Employee {
 
     @ManyToMany
     @JoinTable(name = "employees_projects", joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "employee_id"), inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "project_id"))
-    private Collection<Project> Projects;
+    private List<Project> projects;
 
     @Nullable
     //@DateTimeFormat(pattern = "MM/dd/yyyy")
@@ -58,5 +59,15 @@ public class Employee {
     //@DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name="hireDate")
     private Date hireDate;
+
+
+    public void addProject(Project project){
+        if (projects.contains(project)){
+            return;
+        }
+        else{
+            projects.add(project);
+        }
+    }
 
 }

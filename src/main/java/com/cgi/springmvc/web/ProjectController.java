@@ -3,20 +3,21 @@ package com.cgi.springmvc.web;
 import com.cgi.springmvc.beans.Project;
 import com.cgi.springmvc.beans.ProjectDTO;
 import com.cgi.springmvc.repository.ProjectRepository;
+import com.cgi.springmvc.services.ProjectService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+@RestController
 @org.springframework.stereotype.Controller
 public class ProjectController {
     @Autowired
     private ProjectRepository projectRep;
 
+    @Autowired
+    private ProjectService projectService;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -58,5 +59,10 @@ public class ProjectController {
         return "redirect:projectDetails";
     }
 
+    @PostMapping("/addToProject/{cid}/{pid}")
+    public boolean addToProject(@PathVariable("cid") long cid, @PathVariable("pid") long pid){
+        projectService.addEmployeeToProject(pid, cid);
+        return true;
+    }
 
 }

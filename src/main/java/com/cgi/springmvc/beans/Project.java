@@ -9,6 +9,8 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.Date;
 
@@ -32,4 +34,18 @@ public class Project {
 
     @Column(name = "end_date")
     private Date end_date;
+
+    @ManyToMany
+    @JoinTable(name = "employees_projects", joinColumns = @JoinColumn(name = "project_id", referencedColumnName = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "employee_id"))
+    private Collection<Employee> employees;
+
+    public void addEmployee(Employee employee){
+        if (employees.contains(employee)){
+            return;
+        }
+        else{
+            employees.add(employee);
+        }
+    }
 }
