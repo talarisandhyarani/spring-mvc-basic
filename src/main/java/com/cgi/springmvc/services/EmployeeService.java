@@ -34,6 +34,26 @@ public class EmployeeService {
         return employeeDTO;
     }
 
+    public EmployeeDTO getEmployeeByName(String firstName, String lastName){
+        Optional<Employee> employee = employeeRepository.getEmployeeByName(firstName, lastName);
+        EmployeeDTO  employeeDTO = new EmployeeDTO();
+        employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
+        return employeeDTO;
+    }
+
+    public EmployeeDTO getEmployeeByAddress(String address){
+        Optional<Employee> employee = employeeRepository.getEmployeeByAddress(address);
+        EmployeeDTO  employeeDTO = new EmployeeDTO();
+        employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
+        return employeeDTO;
+    }
+    public EmployeeDTO getEmployeeByPhoneNum(String phoneNum){
+        Optional<Employee> employee = employeeRepository.getEmployeeByPhoneNum(phoneNum);
+        EmployeeDTO  employeeDTO = new EmployeeDTO();
+        employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
+        return employeeDTO;
+    }
+
     public void saveEmployee(EmployeeDTO employee){
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
         employeeRepository.save(employeeEntity);
