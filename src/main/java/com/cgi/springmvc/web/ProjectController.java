@@ -1,5 +1,6 @@
 package com.cgi.springmvc.web;
 
+import com.cgi.springmvc.beans.Employee;
 import com.cgi.springmvc.beans.Project;
 import com.cgi.springmvc.beans.ProjectDTO;
 import com.cgi.springmvc.repository.ProjectRepository;
@@ -35,7 +36,8 @@ public class ProjectController {
     }
 
     @GetMapping("/projectDetails")
-    public String projectDetails() {
+    public String projectDetails(@ModelAttribute("project") ProjectDTO project, Model model) {
+        model.addAttribute("project", project);
         return "projectDetails";
     }
 

@@ -35,6 +35,10 @@ public class Project {
     @Column(name = "end_date")
     private Date end_date;
 
+
+    @Column(name = "projectDescription")
+    private String projectDescription;
+
     @ManyToMany
     @JoinTable(name = "employees_projects", joinColumns = @JoinColumn(name = "project_id", referencedColumnName = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "employee_id"))
@@ -48,4 +52,5 @@ public class Project {
             employees.add(employee);
         }
     }
+
 }
