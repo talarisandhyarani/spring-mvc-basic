@@ -61,4 +61,9 @@ public class EmployeeController {
         model.addAttribute("employees", employeeList);
         return "employeeList";
     }
+
+    @GetMapping("/searchEmployee")
+    public String searchEmployee(){
+        return "searchEmployee";
+    }
 }
