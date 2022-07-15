@@ -32,4 +32,7 @@ public class Project {
 
     @Column(name = "end_date")
     private Date end_date;
+
+    @Column(name = "projectDescription")
+    private String projectDescription;
 }
