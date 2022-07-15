@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RestController
 @org.springframework.stereotype.Controller
 public class ProjectController {
     @Autowired
@@ -40,9 +39,9 @@ public class ProjectController {
         return "projectDetails";
     }
 
-    @DeleteMapping("/projectDetails")
-    public String projectDelete(RedirectAttributes redirectAttr) {
-        //insert logic here
+    @GetMapping("/projectDetails/{pid}/delete")
+    public String projectDelete(RedirectAttributes redirectAttr, @PathVariable("pid") long pid) {
+        projectService.deleteProject(pid);
 
         return "redirect:welcome";
     }
