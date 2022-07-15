@@ -5,8 +5,9 @@
 
 <body>
 	<h1>View All Employees</h1>
-    <c:forEach var="employee" items="${employeeList}" >
-        ${employee}
+	<h2>${employees.toString()}</h2>
+    <c:forEach var="employee" items="${employees}" >
+        ${employee.toString()}
     </c:forEach>
 </body>
 </html>
