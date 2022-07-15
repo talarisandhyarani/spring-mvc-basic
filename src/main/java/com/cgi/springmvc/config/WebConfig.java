@@ -43,10 +43,5 @@ public class WebConfig implements WebMvcConfigurer {
         return new ModelMapper();
     }
 
-//    @Bean
-//    public View sample() {
-//        return new JstlView("/WEB-INF/view/sample.jsp");
-//    }
-
 
 }

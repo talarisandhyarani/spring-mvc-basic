@@ -31,7 +31,7 @@ public class WebController {
     public String showForm() {
         return "sample";
     }
-    
+
     @GetMapping("/sample2")
     public String showForm2() {
         return "sample2";
@@ -50,7 +50,6 @@ public class WebController {
         System.out.println("employee name " + employee.getFirstName());
 
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
-        employeeEntity = employeeRep.save(employeeEntity);
 
         employee.setId(employeeEntity.getEmployee_id());
         redirectAttr.addFlashAttribute("employee",
