@@ -11,5 +11,6 @@
 	    <li>Start Date: ${startDate}</li>
 	    <li>Current Project Members: ${projectMemberList}</li>
 	</ul>
+	<button type="button" href="/projectDetails/${id}/delete">Delete Project</button>
 </body>
 </html>
