@@ -54,8 +54,7 @@ public class EmployeeService {
         employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
         return employeeDTO;
     }
-
-        public Employee saveEmployee(EmployeeDTO employee){
+    public Employee saveEmployee(EmployeeDTO employee){
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
         return employeeRepository.save(employeeEntity);
     }

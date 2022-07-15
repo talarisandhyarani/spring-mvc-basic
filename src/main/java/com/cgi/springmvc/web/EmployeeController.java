@@ -6,14 +6,12 @@ import com.cgi.springmvc.services.EmployeeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.stereotype.Controller
 public class EmployeeController {
@@ -64,6 +62,27 @@ public class EmployeeController {
 
     @GetMapping("/searchEmployee")
     public String searchEmployee(){
+        return "searchEmployee";
+    }
+
+    @PostMapping("/searchEmployee")
+    public String searchReturn(@RequestParam String searchType, @RequestParam String query, Model model){
+        EmployeeDTO employee = new EmployeeDTO();
+        if (searchType.equals("name")){
+            String[] nameArr = query.split(" ", 2);
+            employee = employeeService.getEmployeeByName(nameArr[0], nameArr[1]);
+        }
+        else if (searchType.equals("address")){
+            employee = employeeService.getEmployeeByAddress(query);
+        }
+        else if (searchType.equals("phoneNum")){
+            employee = employeeService.getEmployeeByPhoneNum(query);
+        }
+
+        if(employee != null){
+            model.addAttribute("employee", employee);
+            return "employeeDetails";
+        }
         return "searchEmployee";
     }
 }
