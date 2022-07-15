@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTO {
-    private long id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String phoneNumber;
+public class ProjectDTO {
+    private long project_id;
+    private String project_name;
+    private Date start_date;
+    private Date end_date;
 }
