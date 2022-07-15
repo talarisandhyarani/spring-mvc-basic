@@ -1,13 +1,18 @@
 package com.cgi.springmvc.services;
 
 import com.cgi.springmvc.beans.Employee;
+import com.cgi.springmvc.beans.EmployeeDTO;
 import com.cgi.springmvc.beans.Project;
 import com.cgi.springmvc.beans.ProjectDTO;
 import com.cgi.springmvc.repository.EmployeeRepository;
 import com.cgi.springmvc.repository.ProjectRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -72,5 +77,10 @@ public class ProjectService {
         return true;
     }
 
-
+    public List<ProjectDTO> getAllProjects(){
+        List<Project> projects = new ArrayList<Project>();
+        projectRepository.findAll().forEach(projects::add);
+        List<ProjectDTO>  projectsDTO = modelMapper.map(projects, new TypeToken<List<ProjectDTO>>() {}.getType());
+        return projectsDTO;
+    }
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.util.List;
 
 @org.springframework.stereotype.Controller
 public class ProjectController {
@@ -60,6 +61,13 @@ public class ProjectController {
         return "redirect:projectDetails";
     }
 
+    @GetMapping("/projectList")
+    public String getProjectList(Model model) {
+        List<ProjectDTO> projList = projectService.getAllProjects();
+        model.addAttribute("projects", projList);
+
+        return "projectList";
+    }
 
     //for testing projectService only changed to private now
     @PostMapping("/addToProject/{cid}/{pid}")
