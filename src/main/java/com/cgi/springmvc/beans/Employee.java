@@ -1,4 +1,5 @@
-package com.cgi.springmvc.models;
+package com.cgi.springmvc.beans;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,11 +13,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="customers")
-public class Customer{
+@Table(name="employees")
+public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
+    private Long employeeId;
 
     @Column(nullable=false, length=50)
     private String firstName;
@@ -41,13 +43,13 @@ public class Customer{
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER,
         cascade = CascadeType.ALL)
-    private Set<Account> accounts;
+    private Set<ActiveProject> activeProjects;
 
-    protected Customer(){}
+    protected Employee(){}
 
-    public Customer(Long customerId, String firstName, String lastName, String streetAddress, String city,
-            String stateAbbr, String zipCode, String phoneNumber) {
-        this.customerId = customerId;
+    public Employee(Long employeeId, String firstName, String lastName, String streetAddress, String city,
+            String stateAbbr, String zipCode, String phoneNumber, Set<ActiveProject> activeProjects) {
+        this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -55,14 +57,15 @@ public class Customer{
         this.stateAbbr = stateAbbr;
         this.zipCode = zipCode;
         this.phoneNumber = phoneNumber;
+        this.activeProjects = activeProjects;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
@@ -119,5 +122,13 @@ public class Customer{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Set<ActiveProject> getActiveProjects() {
+        return activeProjects;
+    }
+
+    public void setActiveProjects(Set<ActiveProject> activeProjects) {
+        this.activeProjects = activeProjects;
     }
 }

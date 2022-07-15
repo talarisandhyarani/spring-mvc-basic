@@ -1,31 +1,18 @@
 package com.cgi.springmvc.web;
 
-
-import com.cgi.springmvc.beans.Customer;
-import com.cgi.springmvc.beans.CustomerDTO;
-import com.cgi.springmvc.repository.CustomerRepository;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.cgi.springmvc.beans.Customer;
 
-
-@org.springframework.stereotype.Controller
+@Controller
 public class WebController {
-
-      @Autowired
-   private CustomerRepository customerRep;
-      @Autowired
-   private ModelMapper modelMapper;
-   /* @Autowired
-    public WebController(CustomerRepository customerRepository){
-        this.customerRep = customerRepository;
-    }*/
-
 
     @GetMapping("/sample")
     public String showForm() {
@@ -37,40 +24,36 @@ public class WebController {
         return "sample2";
     }
 
-    @GetMapping("/error")
-    public String showForm3() {
-        return "sampleError";
-    }
-
     @GetMapping("/newCustomer")
-    public String showForm4() {return "newCustomer"; }
-    @PostMapping("/save")
-    public String redirectThankYou(RedirectAttributes redirectAttr, @ModelAttribute("customer") CustomerDTO customer){
-
-        System.out.println("customer name " + customer.getFirstName());
-
-        Customer customerEntity = modelMapper.map(customer, Customer.class);
-        customerEntity = customerRep.save(customerEntity);
-
-        customer.setId(customerEntity.getCustomer_id());
-        redirectAttr.addFlashAttribute("customer",
-                customer);
-
-        return "redirect:welcome";
+    public String showForm4(){
+        return "newCustomer";
     }
 
-    @GetMapping("/welcome")
-    public String showWelcome(@ModelAttribute("customer") CustomerDTO customer, Model model){
-        System.out.println("phone " + customer.getPhoneNumber());
-        model.addAttribute("name", customer.getFirstName()+" "+customer.getLastName());
-        model.addAttribute("address", customer.getAddress() + " " + customer.getPhoneNumber());
-        model.addAttribute("id", customer.getId());
-        return "welcome";
+    @PostMapping("/redirectView")
+    public RedirectView redirectView(RedirectAttributes attributes,@ModelAttribute("customer") Customer customer) {
+        attributes.addFlashAttribute("customer", customer);
+        return new RedirectView("/thankyou");
+    }
+ 
+
+    @GetMapping("/thankyou")
+    public String showForm5(@ModelAttribute("customer") Customer customer, Model model){
+        model.addAttribute("name", customer.getFirstName() + " " + customer.getLastName());
+        model.addAttribute("mailingAddress", customer.getStreetAddress() + ", " + customer.getCity() + ", " + customer.getStateAbbr() + " " + customer.getZipCode());
+        model.addAttribute("phoneNumber", customer.getPhoneNumber());
+        return "thankyou";
     }
 
-    @GetMapping("/register")
-    public String showRegisterForm() {
-        return "registerForm";
-    }
+    @GetMapping("/customerTest")
+    public String showForm6(Model model){
+        String url = "http://localhost:8080/api/v1/getCustomer/?cid=1";
 
+        RestTemplate restTemplate = new RestTemplate();
+        Customer customer = restTemplate.getForObject(url, Customer.class);
+
+        model.addAttribute("name", customer.getFirstName() + " " + customer.getLastName());
+
+        return "customerTest";
+
+    }
 }
