@@ -1,4 +1,4 @@
-package com.cgi.springmvc.models;
+package com.cgi.springmvc.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="projects")
+@Table(name="activeProjects")
 
 public class ActiveProject {
     @Id
@@ -26,6 +26,38 @@ public class ActiveProject {
     private Project project;
 
     protected ActiveProject(){}
+
+    public ActiveProject(Long projectListId, Employee employee, Project project) {
+        this.projectListId = projectListId;
+        this.employee = employee;
+        this.project = project;
+    }
+
+    public Long getProjectListId() {
+        return projectListId;
+    }
+
+    public void setProjectListId(Long projectListId) {
+        this.projectListId = projectListId;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    
 
     
 }
