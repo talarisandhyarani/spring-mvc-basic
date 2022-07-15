@@ -16,12 +16,14 @@ public class ProjectDTO {
     private String project_name;
     private Date start_date;
     private Date end_date;
+    private String projectDescription;
 
     @Override
     public String toString(){
         return "Project #: " + project_id +
                 "\nName: " + project_name +
                 "\nStart date: " + start_date.toString() +
-                "\nEnd date: " + end_date.toString();
+                "\nEnd date: " + end_date.toString() +
+                "\nDescription: " + projectDescription;
     }
 }
