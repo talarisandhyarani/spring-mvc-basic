@@ -62,12 +62,11 @@ public class ProjectService {
     public boolean addEmployeeToProject(long proj_id, long employ_id){
         Project project = projectRepository.findById(proj_id).orElse(null);
         Employee employee = employeeRepository.findById(employ_id).orElse(null);
-        project.addEmployee(employee);
-        projectRepository.save(project);
-
         if (employee == null || project == null){
             return false;
         }
+        project.addEmployee(employee);
+        projectRepository.save(project);
 
         return true;
     }
