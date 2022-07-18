@@ -70,16 +70,9 @@ public class EmployeeController {
     public String searchReturn(@RequestParam String query, Model model) {
         List<Employee> employees = new ArrayList<Employee>();
         query = "%" + query + "%";
-        System.out.println("query " + query);
         employees = employeeService.getEmployeeByKeyword(query);
         model.addAttribute("employees", employees);
         return "searchEmployee";
 
     }
-
-    @GetMapping("/searchResults")
-    public String getSearch( Model model) {
-        return "searchResults";
-    }
-
 }
