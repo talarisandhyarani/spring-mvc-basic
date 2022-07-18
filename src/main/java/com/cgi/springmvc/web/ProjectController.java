@@ -59,12 +59,7 @@ public class ProjectController {
 
         return "redirect:projectDetails";
     }
-
-<<<<<<< Updated upstream
-    @PostMapping("/addToProject/{cid}/{pid}")
-    public boolean addToProject(@PathVariable("cid") long cid, @PathVariable("pid") long pid){
-=======
-
+    
     @GetMapping("/getEmployeeProjectForm")
     public String getEmployeeProjectForm(){
         return "addEmployeeToProjectForm";
@@ -79,7 +74,6 @@ public class ProjectController {
     //for testing projectService only changed to private now
     @PostMapping("/addToProjectAPI/")
     private boolean addToProjectAPI(@Param("cid") long cid, @Param("pid") long pid){
->>>>>>> Stashed changes
         projectService.addEmployeeToProject(pid, cid);
         return true;
     }
