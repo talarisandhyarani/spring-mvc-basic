@@ -88,23 +88,17 @@ public class EmployeeController {
 
     @GetMapping("/getDeleteEmployeeForm")
     public String getDeleteEmployeeForm(Model model){
-        model.addAttribute("failure", false);
+        model.addAttribute("result", false);
         return "deleteEmployee";
     }
 
-    @GetMapping("/getDeleteEmployeeFormFailure")
-    public String getDeleteEmployeeFormFailure(Model model){
-        model.addAttribute("failure", true);
-        return "deleteEmployee";
-    }
+    @PostMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("employeeId") Long id, Model model){
+        boolean deleteSuccess = employeeService.deleteById(id);
 
-    @DeleteMapping("/deleteEmployee")
-    public RedirectView deleteEmployee(@RequestParam Long id){
-        if (employeeService.deleteById(id)){
-            return new RedirectView("");
-        } else {
-            return new RedirectView("/getDeleteEmployeeFormFailure");
-        }
+        if(deleteSuccess)
+            model.addAttribute("result", deleteSuccess);
+        return "deleteEmployee";
 
     }
 

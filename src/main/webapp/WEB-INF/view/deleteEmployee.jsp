@@ -1,3 +1,6 @@
+<%--<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<link rel="stylesheet" href="<spring:theme code='styleSheet'/>"/> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Delete Employee</title>
@@ -13,7 +16,7 @@
 
 
     <c:choose>
-        <c:when test="${failure}">
+        <c:when test="${success}">
             <h2>Error Deleting Employee</h2>
         </c:when>
          <c:otherwise>

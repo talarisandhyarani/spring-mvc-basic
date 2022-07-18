@@ -10,7 +10,7 @@
     <h2><a href="/newEmployee">Create a New Employee</a></h2></br>
     <h2><a href="/employeeList">View All Employees</a></h2></br>
    	<h2><a href="/searchEmployee">Search Employees</a></h2></br>
-   	<h2><a href="/deleteEmployee">Delete An Employee</a></h2></br>
+   	<h2><a href="/getDeleteEmployeeForm">Delete An Employee</a></h2></br>
 	<h2><a href="/newProject">Create a New Project.</a></h2></br>
 	<h2><a href="/projectList">View All Projects</a></h2></br>
    	<h2><a href="/searchProject">Search Projects</a></h2></br>
