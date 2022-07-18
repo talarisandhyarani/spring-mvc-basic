@@ -13,13 +13,11 @@
 
 
     <c:choose>
-        <c:when test="${not empty result}">
-            <h2>Employee Deleted</h2>
-        </c:when>
-
-        <c:when test="${empty result}">
+        <c:when test="${failure}">
             <h2>Error Deleting Employee</h2>
         </c:when>
+         <c:otherwise>
+         </c:otherwise>
     </c:choose>
 </body>
 </html>

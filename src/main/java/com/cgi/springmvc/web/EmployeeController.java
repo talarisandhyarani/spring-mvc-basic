@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +33,7 @@ public class EmployeeController {
     public String saveEmployee(RedirectAttributes redirectAttributes, @ModelAttribute("employee") EmployeeDTO employee){
         System.out.println("employee name " + employee.getFirstName());
 
-        Employee newEmployee =employeeService.saveEmployee(employee);
+        Employee newEmployee = employeeService.saveEmployee(employee);
         redirectAttributes.addFlashAttribute("employee", newEmployee);
 
         return "redirect:employeeDetails";
@@ -83,6 +84,28 @@ public class EmployeeController {
     @GetMapping("/searchResults")
     public String getSearch( Model model) {
         return "searchResults";
+    }
+
+    @GetMapping("/getDeleteEmployeeForm")
+    public String getDeleteEmployeeForm(Model model){
+        model.addAttribute("failure", false);
+        return "deleteEmployee";
+    }
+
+    @GetMapping("/getDeleteEmployeeFormFailure")
+    public String getDeleteEmployeeFormFailure(Model model){
+        model.addAttribute("failure", true);
+        return "deleteEmployee";
+    }
+
+    @DeleteMapping("/deleteEmployee")
+    public RedirectView deleteEmployee(@RequestParam Long id){
+        if (employeeService.deleteById(id)){
+            return new RedirectView("");
+        } else {
+            return new RedirectView("/getDeleteEmployeeFormFailure");
+        }
+
     }
 
 }

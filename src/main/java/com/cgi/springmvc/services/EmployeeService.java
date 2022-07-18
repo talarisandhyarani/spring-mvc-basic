@@ -74,4 +74,13 @@ public class EmployeeService {
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
         return employeeRepository.save(employeeEntity);
     }
+
+    public boolean deleteById(long id){
+        Employee optionalEmployee = employeeRepository.findById(id).orElse(null);
+        if (optionalEmployee == null) {
+            return false;
+        }
+        employeeRepository.deleteById(id);
+        return true;
+    }
 }
