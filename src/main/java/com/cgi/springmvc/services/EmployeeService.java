@@ -59,6 +59,17 @@ public class EmployeeService {
         employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
         return employeeDTO;
     }
+    public List<Employee> getEmployeeByKeyword(String query){
+        Optional<List<Employee>> employees = employeeRepository.getEmployeebyKeyword(query);
+        List<EmployeeDTO> employeesDTO = new ArrayList<EmployeeDTO>();
+        if (employees.isPresent()){
+            for (int i = 0; i < employees.get().size(); i++){
+                employeesDTO.add(new EmployeeDTO());
+            }
+        }
+        employees.ifPresent(employeeData -> modelMapper.map(employeeData, employeesDTO));
+        return employees.get();
+    }
     public Employee saveEmployee(EmployeeDTO employee){
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
         return employeeRepository.save(employeeEntity);
