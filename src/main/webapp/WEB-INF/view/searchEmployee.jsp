@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Search Employees</title>
@@ -13,11 +15,11 @@
 
 
     <c:choose>
-        <c:when test="${empty employee}">
+        <c:when test="${empty employees}">
             <h2>Please Enter A New Search</h2>
         </c:when>
 
-        <c:when test="${not empty employee}">
+        <c:when test="${not empty employees}">
             <table border="1px">
             <th>Name</th>
             <th>Phone</th>
@@ -25,14 +27,16 @@
             <th>Email</th>
             <th>Date of Birth</th>
             <th>Hire Date</th>
-            <tr>
-                <td>${employee.firstName} ${employee.lastName}</td>
-                <td>${employee.phoneNumber}</td>
-                <td>${employee.address}</td>
-                <td>${employee.email}</td>
-                <td>${employee.birthDate}</td>
-                <td>${employee.hireDate}</td>
-            </tr>
+            <c:forEach var="employee" items="${employees}" >
+                <tr>
+                    <td>${employee.firstName} ${employee.lastName}</td>
+                    <td>${employee.phoneNumber}</td>
+                    <td>${employee.address}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.birthDate}</td>
+                    <td>${employee.hireDate}</td>
+                </tr>
+            </c:forEach>
             </table>
         </c:when>
     </c:choose>

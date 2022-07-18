@@ -103,4 +103,14 @@ public class ProjectController {
         return true;
     }
 
+    @GetMapping("/deleteProject")
+    private String deleteProject(Model model){
+        return "deleteProject";
+    }
+    @PostMapping("/deleteProject")
+    private String deleteProject(@Param("pid") long pid, Model model){
+        boolean result = projectService.deleteProject(pid);
+        model.addAttribute("result", result ? "Deleted project" : "Error deleting project");
+        return "deleteProject";
+    }
 }

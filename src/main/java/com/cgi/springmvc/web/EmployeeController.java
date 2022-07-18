@@ -62,7 +62,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/searchEmployee")
-    public String searchEmployee(){
+    public String searchEmployee(Model model){
         return "searchEmployee";
     }
 
@@ -72,12 +72,9 @@ public class EmployeeController {
         query = "%" + query + "%";
         System.out.println("query " + query);
         employees = employeeService.getEmployeeByKeyword(query);
-
-        if (!employees.isEmpty()) {
-            model.addAttribute("employees", employees);
-            return "searchResults";
-        }
+        model.addAttribute("employees", employees);
         return "searchEmployee";
+
     }
 
     @GetMapping("/searchResults")
