@@ -9,9 +9,7 @@
 <body>
 	<h1>View All Employees</h1>
     <hr/>
-	<table>
-	    <style scoped>td {padding:1px;}</style>
-
+	<table border="1px">
         <th>Name</th>
         <th>Phone</th>
         <th>Address</th>
@@ -26,7 +24,6 @@
                 <td>${employee.email}</td>
                 <td>${employee.birthDate}</td>
                 <td>${employee.hireDate}</td>
-                <td></td>
             </tr>
         </c:forEach>
     </table>

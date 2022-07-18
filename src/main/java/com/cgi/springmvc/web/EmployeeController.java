@@ -83,11 +83,8 @@ public class EmployeeController {
         else if (searchType.equals("phoneNum")){
             employee = employeeService.getEmployeeByPhoneNum(query);
         }
-
-        if(employee != null){
-            model.addAttribute("employee", employee);
-            return "employeeDetails";
-        }
+//      Adding result to the model regardless, so that JSP can check for null result to display error.
+        model.addAttribute("employee", employee);
         return "searchEmployee";
     }
 }
