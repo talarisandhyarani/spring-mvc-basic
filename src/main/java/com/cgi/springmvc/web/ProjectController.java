@@ -122,4 +122,16 @@ public class ProjectController {
         return "searchProject";
     }
 
+    @GetMapping("deleteProject")
+    public String deleteProject(){return "deleteProject";}
+
+    @PostMapping("deleteProject")
+    public String deleteProject(@RequestParam("projectId") Long projectId, Model model){
+        boolean isDeleted = projectService.deleteProject(projectId);
+        if(isDeleted)
+            model.addAttribute("result", projectId);
+
+        return "deleteProject";
+    }
+
 }
