@@ -32,7 +32,7 @@ public class ProjectController {
     @PostMapping("/newProject")
     public String submittedNewProject(RedirectAttributes redirectAttr, @ModelAttribute("project") ProjectDTO project) {
         Project projectEntity = modelMapper.map(project, Project.class);
-
+        projectService.addProject(project);
         redirectAttr.addFlashAttribute("project", project);
 
         return "redirect:projectDetails";
@@ -44,7 +44,7 @@ public class ProjectController {
         return "projectDetails";
     }
 
-    @GetMapping("/projectDetails/{pid}/delete")
+    @DeleteMapping("/projectDetails/{pid}/delete")
     public String projectDelete(RedirectAttributes redirectAttr, @PathVariable("pid") long pid) {
         projectService.deleteProject(pid);
 
