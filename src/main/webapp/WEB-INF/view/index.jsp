@@ -4,10 +4,6 @@
 </head>
 
 <body>
-	<h1>This is the body of the index view</h1>
-	<h2><a href="/register">Register Here</a></h2>
-	<h1>This is the body of the index view</h1>
-	<h2><a href="/register">Register Here</a></h2>
 	<h1>Welcome To The Training Project!</h1>
 
 	<h2><a href="/register">Register Account</a></h2></br>
