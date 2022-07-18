@@ -1,15 +1,18 @@
 package com.cgi.springmvc.beans;
 
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -41,14 +44,18 @@ public class Employee {
     @Column(nullable=false, length=10)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER,
-        cascade = CascadeType.ALL)
-    private Set<ActiveProject> activeProjects;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name="employee_projects",
+        joinColumns = @JoinColumn(name = "employee_id"),
+        inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    Set<Project> employeeProjects;
 
     protected Employee(){}
 
     public Employee(Long employeeId, String firstName, String lastName, String streetAddress, String city,
-            String stateAbbr, String zipCode, String phoneNumber, Set<ActiveProject> activeProjects) {
+            String stateAbbr, String zipCode, String phoneNumber) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -57,7 +64,6 @@ public class Employee {
         this.stateAbbr = stateAbbr;
         this.zipCode = zipCode;
         this.phoneNumber = phoneNumber;
-        this.activeProjects = activeProjects;
     }
 
     public Long getEmployeeId() {
@@ -123,14 +129,5 @@ public class Employee {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public Set<ActiveProject> getActiveProjects() {
-        return activeProjects;
-    }
-
-    public void setActiveProjects(Set<ActiveProject> activeProjects) {
-        this.activeProjects = activeProjects;
-    }
-
 
 }

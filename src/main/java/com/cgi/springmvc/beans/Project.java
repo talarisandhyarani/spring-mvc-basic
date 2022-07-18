@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.sql.Date;
@@ -31,16 +32,16 @@ public class Project {
     @Column(nullable=false, length=50)
     private Date endDate;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER,
-        cascade = CascadeType.ALL)
-    private Set<ActiveProject> activeProjects;
+    @ManyToMany(mappedBy = "employeeProjects",cascade = CascadeType.ALL)
+    Set<Employee> projects;
 
     protected Project(){}
 
-    public Project(Long projectId, String projectName, Set<ActiveProject> activeProjects) {
+    public Project(Long projectId, String projectName, Date startDate, Date endDate) {
         this.projectId = projectId;
         this.projectName = projectName;
-        this.activeProjects = activeProjects;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public Long getProjectId() {
@@ -59,13 +60,20 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public Set<ActiveProject> getActiveProjects() {
-        return activeProjects;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setActiveProjects(Set<ActiveProject> activeProjects) {
-        this.activeProjects = activeProjects;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
     
 }
