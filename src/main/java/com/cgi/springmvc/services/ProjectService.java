@@ -47,7 +47,7 @@ public class ProjectService {
     }
 
     public boolean deleteProject(long proj_id){
-        if (proj_id == 0){
+        if (proj_id == 0 || projectRepository.findById(proj_id).orElse(null) == null){
             return false;
         }
         projectRepository.deleteById(proj_id);
