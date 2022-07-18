@@ -77,7 +77,6 @@ public class EmployeeController {
             model.addAttribute("employees", employees);
             return "searchResults";
         }
-        return "searchEmployee";
     }
 
     @GetMapping("/searchResults")

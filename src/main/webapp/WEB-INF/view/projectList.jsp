@@ -9,9 +9,7 @@
 <body>
 	<h1>View All Projects</h1>
     <hr/>
-	<table>
-	    <style scoped>td {padding:1px;}</style>
-
+	<table border="1px">
         <th>Project ID</th>
         <th>Name</th>
         <th>Start Date</th>
