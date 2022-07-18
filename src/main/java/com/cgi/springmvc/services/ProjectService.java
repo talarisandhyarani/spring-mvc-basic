@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -81,5 +82,17 @@ public class ProjectService {
         projectRepository.findAll().forEach(projects::add);
         List<ProjectDTO>  projectsDTO = modelMapper.map(projects, new TypeToken<List<ProjectDTO>>() {}.getType());
         return projectsDTO;
+    }
+
+    public List<Project> getProjectByKeyword(String query){
+        Optional<List<Project>> projects = projectRepository.getProjectByKeyword(query);
+        List<ProjectDTO> projectsDTO = new ArrayList<ProjectDTO>();
+        if (projects.isPresent()){
+            for (int i = 0; i < projects.get().size(); i++){
+                projectsDTO.add(new ProjectDTO());
+            }
+        }
+        projects.ifPresent(employeeData -> modelMapper.map(employeeData, projectsDTO));
+        return projects.get();
     }
 }
