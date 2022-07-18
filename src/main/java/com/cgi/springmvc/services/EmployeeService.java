@@ -41,7 +41,12 @@ public class EmployeeService {
         employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
         return employeeDTO;
     }
-
+    public EmployeeDTO getEmployeeByEmail(String email){
+        Optional<Employee> employee = employeeRepository.getEmployeeByEmail(email);
+        EmployeeDTO  employeeDTO = new EmployeeDTO();
+        employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
+        return employeeDTO;
+    }
     public EmployeeDTO getEmployeeByAddress(String address){
         Optional<Employee> employee = employeeRepository.getEmployeeByAddress(address);
         EmployeeDTO  employeeDTO = new EmployeeDTO();
@@ -54,8 +59,7 @@ public class EmployeeService {
         employee.ifPresent(employeeData -> modelMapper.map(employeeData, employeeDTO));
         return employeeDTO;
     }
-
-        public Employee saveEmployee(EmployeeDTO employee){
+    public Employee saveEmployee(EmployeeDTO employee){
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
         return employeeRepository.save(employeeEntity);
     }

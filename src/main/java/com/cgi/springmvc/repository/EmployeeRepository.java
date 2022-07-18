@@ -17,6 +17,8 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
     @Query(value = "SELECT * FROM Employee e WHERE e.firstName = :firstName AND e.lastName = :lastName", nativeQuery = true)
     Optional<Employee> getEmployeeByName(String firstName, String lastName);
 
+    @Query(value = "SELECT * FROM Employee e WHERE e.email = :email", nativeQuery = true)
+    Optional<Employee> getEmployeeByEmail(String email);
     @Query(value = "SELECT * FROM Employee e WHERE e.address = :address", nativeQuery = true)
     Optional<Employee> getEmployeeByAddress(String address);
 
