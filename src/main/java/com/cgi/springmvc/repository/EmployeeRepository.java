@@ -3,9 +3,11 @@ package com.cgi.springmvc.repository;
 import com.cgi.springmvc.beans.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -24,4 +26,9 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
     @Query(value = "SELECT * FROM Employee e WHERE e.phoneNum = :phoneNum", nativeQuery = true)
     Optional<Employee> getEmployeeByPhoneNum(String phoneNum);
+
+    @Query(value = "SELECT * FROM Employee e WHERE e.employee_id LIKE :keyword OR e.firstName LIKE :keyword OR" +
+            " e.lastName LIKE :keyword OR e.address LIKE :keyword OR" +
+            " e.email LIKE :keyword OR e.phoneNumber LIKE :keyword", nativeQuery = true)
+    Optional<List<Employee>> getEmployeebyKeyword(@Param("keyword")String keyword);
 }
