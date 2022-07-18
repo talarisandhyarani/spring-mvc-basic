@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -66,28 +67,22 @@ public class EmployeeController {
     }
 
     @PostMapping("/searchEmployee")
-    public String searchReturn(@RequestParam String searchType, @RequestParam String query, Model model){
-        EmployeeDTO employee = new EmployeeDTO();
-        if (searchType.equals("name")){
-            System.out.println("query " + query);
-            String[] nameArr = query.split("\\s", 2);
-            System.out.println("nameArr[0] " + nameArr[0]);
-            System.out.println("nameArr[1] " + nameArr[1]);
-            employee = employeeService.getEmployeeByName(nameArr[0], nameArr[1]);
-        }else if (searchType.equals("email")){
-            employee = employeeService.getEmployeeByEmail(query);
-        }
-        else if (searchType.equals("address")){
-            employee = employeeService.getEmployeeByAddress(query);
-        }
-        else if (searchType.equals("phoneNum")){
-            employee = employeeService.getEmployeeByPhoneNum(query);
-        }
+    public String searchReturn(@RequestParam String query, Model model) {
+        List<Employee> employees = new ArrayList<Employee>();
+        query = "%" + query + "%";
+        System.out.println("query " + query);
+        employees = employeeService.getEmployeeByKeyword(query);
 
-        if(employee != null){
-            model.addAttribute("employee", employee);
-            return "employeeDetails";
+        if (!employees.isEmpty()) {
+            model.addAttribute("employees", employees);
+            return "searchResults";
         }
         return "searchEmployee";
     }
+
+    @GetMapping("/searchResults")
+    public String getSearch( Model model) {
+        return "searchResults";
+    }
+
 }

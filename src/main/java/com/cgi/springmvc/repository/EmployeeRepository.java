@@ -26,9 +26,9 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
     @Query(value = "SELECT * FROM Employee e WHERE e.phoneNum = :phoneNum", nativeQuery = true)
     Optional<Employee> getEmployeeByPhoneNum(String phoneNum);
-
-    @Query(value = "SELECT * FROM Employee e WHERE e.employee_id LIKE :keyword OR e.firstName LIKE :keyword OR" +
-            " e.lastName LIKE :keyword OR e.address LIKE :keyword OR" +
-            " e.email LIKE :keyword OR e.phoneNumber LIKE :keyword", nativeQuery = true)
+    
+    @Query(value = "SELECT * FROM Employee e WHERE e.employee_id LIKE :keyword OR e.first_Name LIKE :keyword OR" +
+            " e.last_Name LIKE :keyword OR e.address LIKE :keyword OR" +
+            " e.email LIKE :keyword OR e.phone_Number LIKE :keyword", nativeQuery = true)
     Optional<List<Employee>> getEmployeebyKeyword(@Param("keyword")String keyword);
 }
