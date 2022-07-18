@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -101,6 +103,23 @@ public class ProjectController {
     private boolean addToProjectAPI(@Param("cid") long cid, @Param("pid") long pid){
         projectService.addEmployeeToProject(pid, cid);
         return true;
+    }
+
+    @GetMapping("/searchProject")
+    public String searchProject(){
+        return "searchProject";
+    }
+
+    @PostMapping("/searchProject")
+    public String searchReturn(@RequestParam String query, Model model) {
+        List<Project> projects = new ArrayList<>();
+        query = "%" + query + "%";
+        projects = projectService.getProjectByKeyword(query);
+
+        if (!projects.isEmpty()) {
+            model.addAttribute("projectList", projects);
+        }
+        return "searchProject";
     }
 
 }
