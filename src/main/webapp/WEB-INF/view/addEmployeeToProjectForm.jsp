@@ -1,5 +1,7 @@
 <%--<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <link rel="stylesheet" href="<spring:theme code='styleSheet'/>"/> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head></head>
 <body>
@@ -14,6 +16,14 @@
 </table>
 <input type="submit" value="add"/>
  </form:form>
+<br>
+<c:choose>
+    <c:when test="${failure}">
+       Insertion Failed Check Ids are valid
+    </c:when>
+    <c:otherwise>
+    </c:otherwise>
+</c:choose>
 
 </body>
 </html>
