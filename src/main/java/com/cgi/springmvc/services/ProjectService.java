@@ -3,10 +3,11 @@ package com.cgi.springmvc.services;
 import java.util.List;
 
 import com.cgi.springmvc.beans.Project;
+import com.cgi.springmvc.beans.ProjectDTO;
 
 public interface ProjectService {
-    public abstract void createProject(Project project);
-    public abstract void updateProject(String id, Project project);
+    public abstract void createProject(ProjectDTO project);
+    public abstract void updateProject(String id, ProjectDTO project);
     public abstract void deleteProject(String id);
-    public abstract List<Project> getProject();
+    public abstract List<ProjectDTO> getAllProjects();
 }

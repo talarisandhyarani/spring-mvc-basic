@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cgi.springmvc.beans.Project;
+import com.cgi.springmvc.beans.ProjectDTO;
 import com.cgi.springmvc.services.ProjectService;
 
 import java.util.List;
@@ -19,13 +20,13 @@ public class ProjectController {
     private ProjectService projectService;
     
     @PostMapping("/getProject/")
-    List<Project> getProject(){
-        return projectService.getProject();
+    List<ProjectDTO> getProject(){
+        return projectService.getAllProjects();
     }
 
     @PostMapping("/projects/")
-    List<Project> createProject(@RequestBody Project project){
+    List<ProjectDTO> createProject(@RequestBody ProjectDTO project){
         projectService.createProject(project);
-        return projectService.getProject();
+        return projectService.getAllProjects();
     }
 }

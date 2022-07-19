@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
-    @Query(value = "SELECT * FROM Employee e", nativeQuery = true)
-    List<Employee> getAllEmployees();
+    @Query(value = "SELECT * FROM Employees e", nativeQuery = true)
+    List<Employee> values();
 
 }
